@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup
 import pandas as pd
 import json
-
+import django_tables2 as tables
+from .tables import station_table
 
 def index(request):
     err = {}
@@ -42,7 +43,9 @@ def index(request):
             df = pd.read_html(str(table))
             res = df[0].to_json()
             data['fare'] = json.loads(res)
-            return HttpResponse(json.dumps(data), content_type='application/json')
+            request.session['train'] = json.dumps(data)
+            return redirect('/details')
+            # return HttpResponse(json.dumps(data), content_type='application/json')
 
         except Exception as e:
             return render(request, 'index.html', {'err': e.args[0]})
@@ -50,5 +53,13 @@ def index(request):
         return render(request, 'index.html', err)
 
 
-def find_trains(request):
-    pass
+def train_details(request):
+    if not request.session['train']:
+        return redirect('/')
+    json_data = request.session['train']
+    data = json.loads(json_data)
+    name = data['train_name']
+    stations = data['stations']
+    fares = data['fare']
+    details = data['details']
+    return render(request, 'details.html', {'name': name, 'stations': stations, 'fares': fares, 'details': details})

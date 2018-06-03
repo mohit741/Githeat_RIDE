@@ -19,5 +19,5 @@ from RIDE import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-   # path('/', views.find_trains, name='find_trains'),
+    path('details', views.train_details, name='train_details'),
 ]
