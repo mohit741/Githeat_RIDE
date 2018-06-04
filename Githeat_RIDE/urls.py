@@ -20,4 +20,5 @@ from RIDE import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('details', views.train_details, name='train_details'),
+    path('json', views.download_json, name='download_json'),
 ]
