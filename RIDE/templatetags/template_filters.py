@@ -24,16 +24,19 @@ def make_table(stations):
 @register.simple_tag
 def make_fare_table(fares):
     res = '<thead><tr>'
-    for i in range(0, 4):
-        if i == 0:
+    for key in fares.keys():
+        if key == '0':
             res += '<th>Type</th>'
         else:
-            res += '<th>' + str(fares[str(i)]['0']) + '</th>'
+            res += '<th>' + str(fares[key]['0']) + '</th>'
     res += '</tr></thead><tbody>'
     for i in range(1, 7):
         res += '<tr>'
-        for j in range(0, 4):
-            res = res + '<td>' + str(fares[str(j)][str(i)]) + '</td>'
+        for key in fares.keys():
+            if str(fares[key][str(i)]) == 'None':
+                res = res + '<td>' + '-' + '</td>'
+            else:
+                res = res + '<td>' + str(fares[key][str(i)]) + '</td>'
         res += '</tr>'
     res += '<tbody>'
 
