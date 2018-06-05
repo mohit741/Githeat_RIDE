@@ -1,14 +1,13 @@
+""" This module is used to create custom template tags to display tables using JSON data
+    It really simplifies the process of creating tables using dicts """
+
 from django import template
 from django.utils.safestring import mark_safe
 
 register = template.Library()
 
 
-@register.filter
-def get_item(dictionary, key):
-    return dictionary.get(key)
-
-
+# To make stations table
 @register.simple_tag
 def make_table(stations):
     res = ''
@@ -21,6 +20,7 @@ def make_table(stations):
     return mark_safe(res)
 
 
+# To make fares table
 @register.simple_tag
 def make_fare_table(fares):
     res = '<thead><tr>'

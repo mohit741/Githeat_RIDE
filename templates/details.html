@@ -28,23 +28,23 @@
                         <br>
                         <br>
                         <div class="container" style="margin-left: -300%">
-                            <legend ><p class="text-info" style="font-size: x-large; color: darkred">{{ name }}</p></legend>
+                            <legend ><p class="text-info fa fa-train" style="font-size: xx-large; color: darkred">  {{ name }}</p></legend>
                             <br>
                             <br>
-                            <legend>Details</legend>
+                            <legend class="fa fa-info-circle" style="font-size: x-large">  Details</legend>
                             <div class="row">
                                 <div class="pull-left">
                                     {% for key , value in details.items %}
-                                        <p class="text-info" style="margin-left: 5%; font-size: large; width: 700px">{{ key }} :      {{ value }}</p>
+                                        <p class="text-info" style="margin-left: 3%; font-size: large; width: 700px"><b>{{ key }} </b> :      {{ value }}</p>
                                     {% endfor %}
                                 </div>
                             </div>
                         <br>
                         <br>
-                            <legend>Stations</legend>
+                            <legend class="fa fa-train" style="font-size: x-large">  Stations</legend>
                             <div class="row">
                                 <div class="pull-left">
-                                    <table class="table table-borderless" style="margin-left: 5%">
+                                    <table class="table table-borderless" style="margin-left: 3%">
                                         <thead>
                                         <tr>
                                             {% for key in stations.keys %}
@@ -61,10 +61,10 @@
                             </div>
                         <br>
                         <br>
-                        <legend>Fares (in Indian Rupees)</legend>
+                        <legend class="fa fa-money" style="font-size: x-large">  Fares (in Indian Rupees)</legend>
                             <div class="row">
                                 <div class="pull-left">
-                                    <table class="table table-borderless" cellspacing="25px" style="margin-left: 5%">
+                                    <table class="table table-borderless" cellspacing="25px" style="margin-left: 3%">
                                         {% make_fare_table fares as k %}
                                         {{ k }}
                                     </table>
